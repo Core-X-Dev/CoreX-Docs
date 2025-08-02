@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreX Framework Documentation</title>
+    <meta name="theme-color" content="#111827">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- SEO and Social Meta Tags -->
+    <meta name="description" content="CoreX Framework - A modular, modern FiveM framework built in Lua with built-in MySQL support, Discord integration, and comprehensive security features.">
+    <meta name="keywords" content="FiveM, CoreX, Framework, Lua, MySQL, Discord, Gaming, Server">
+    <meta name="author" content="Legacy DEV Team">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="CoreX Framework Documentation">
+    <meta property="og:description" content="A modular, modern FiveM framework with built-in MySQL support and comprehensive features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://docs.core-x.dev/">
+    <meta property="og:image" content="https://docs.core-x.dev/assets/corex-logo.png">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CoreX Framework Documentation">
+    <meta name="twitter:description" content="A modular, modern FiveM framework with built-in MySQL support and comprehensive features.">
+    <meta name="twitter:image" content="https://docs.core-x.dev/assets/corex-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://docs.core-x.dev/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/corex-icon.png">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/corex-logo.png" alt="CoreX Framework Logo" class="corex-logo" />
+                <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <ul class="nav-menu">
+                    <li><a href="#overview" class="nav-link active"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="#getting-started" class="nav-link"><i class="fas fa-rocket"></i> Getting Started</a></li>
+                    <li><a href="#installation" class="nav-link"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="#configuration" class="nav-link"><i class="fas fa-cog"></i> Configuration</a></li>
+                    <li><a href="#database" class="nav-link"><i class="fas fa-database"></i> Database</a></li>
+                    <li><a href="#modules" class="nav-link"><i class="fas fa-puzzle-piece"></i> Modules</a></li>
+                    <li><a href="#commands" class="nav-link"><i class="fas fa-keyboard"></i> Commands</a></li>
+                    <li><a href="#api" class="nav-link"><i class="fas fa-code"></i> API Reference</a></li>
+                    <li><a href="#localization" class="nav-link"><i class="fas fa-globe"></i> Localization</a></li>
+                    <li><a href="#security" class="nav-link"><i class="fas fa-shield-alt"></i> Security</a></li>
+                    <li><a href="#contributing" class="nav-link"><i class="fas fa-users"></i> Contributing</a></li>
+                    <li><a href="#changelog" class="nav-link"><i class="fas fa-history"></i> Changelog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Overview Section -->
+                <section id="overview" class="section">
+                    <center><img src="assets/corex-logo.png" alt="CoreX Framework Logo" class="corex-logo" style="width: 700px"/></center>
+                    <p class="lead">A modular, modern FiveM framework built in Lua, designed for flexibility, performance, and ease of use.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-cubes"></i>
+                            <h3>Modular Architecture</h3>
+                            <p>Dynamic module loading system with clean separation of concerns</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-globe"></i>
+                            <h3>Multi-Language Support</h3>
+                            <p>Built-in localization system supporting 5 languages</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fab fa-discord"></i>
+                            <h3>Discord Integration</h3>
+                            <p>Seamless Discord bot integration for permissions and chat</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Multi-Character System</h3>
+                            <p>Support for multiple characters per player with perma-death</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-database"></i>
+                            <h3>Built-in MySQL Support</h3>
+                            <p>Native MySQL integration with connection string configuration</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Security First</h3>
+                            <p>Role-based permissions and comprehensive audit logging</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Getting Started Section -->
+                <section id="getting-started" class="section">
+                    <h2>Getting Started</h2>
+                    <p>CoreX is designed to be easy to set up and use. Follow these steps to get your server running with CoreX.</p>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Prerequisites:</strong> FiveM Server, MySQL Database, Discord Bot Token
+                    </div>
+                    
+                    <h3>Database Setup</h3>
+                    <p>CoreX uses built-in MySQL support with a simple connection string configuration. No external MySQL resources required!</p>
+                </section>
+
+                <!-- Installation Section -->
+                <section id="installation" class="section">
+                    <h2>Installation</h2>
+                    
+                    <h3>1. Download CoreX</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyCode('install-code')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="install-code"><code># Clone the repository
+git clone https://github.com/Legacy-DEV-Team/CoreX.git
+
+# Or download the latest release
+# Extract to your FiveM resources folder</code></pre>
+                    </div>
+
+                    <h3>2. Configure Database</h3>
+                    <p>CoreX includes built-in MySQL support. Simply add your MySQL connection string to your <code>server.cfg</code>:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>server.cfg</span>
+                            <button class="copy-btn" onclick="copyCode('mysql-config')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="mysql-config"><code># MySQL Connection String
+set mysql_connection "mysql://username:password@localhost:3306/database_name?"
+
+# Example with specific values
+set mysql_connection "mysql://root:mypassword@localhost:3306/corex_db?"</code></pre>
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>No External Dependencies:</strong> CoreX handles all MySQL operations internally using FiveM's native MySQL functions.
+                    </div>
+
+                    <h3>3. Configure Discord</h3>
+                    <p>Set up your Discord bot and update the configuration in <code>config/permissions/discord.lua</code>:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>config/permissions/discord.lua</span>
+                            <button class="copy-btn" onclick="copyCode('discord-config')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="discord-config"><code>Config.Discord = {
+    botToken = "your_bot_token",
+    guildId = "your_guild_id",
+    chatChannelId = "your_chat_channel_id",
+    logsChannelId = "your_logs_channel_id"
+}</code></pre>
+                    </div>
+
+                    <h3>4. Add to server.cfg</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>server.cfg</span>
+                            <button class="copy-btn" onclick="copyCode('server-cfg')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="server-cfg"><code># Add CoreX to your server configuration
+ensure CoreX
+
+# MySQL connection string (if not already added)
+set mysql_connection "mysql://username:password@localhost:3306/database_name?"</code></pre>
+                    </div>
+
+                    <h3>5. Start Your Server</h3>
+                    <p>Start your FiveM server and CoreX will automatically initialize all modules.</p>
+                </section>
+
+                <!-- Configuration Section -->
+                <section id="configuration" class="section">
+                    <h2>Configuration</h2>
+                    <p>CoreX uses a modular configuration system organized in the <code>config/</code> folder.</p>
+                    
+                    <h3>Database Configuration</h3>
+                    <p>CoreX includes built-in MySQL support that automatically handles database operations. The framework will:</p>
+                    <ul>
+                        <li><strong>Auto-create tables:</strong> All required database tables are created automatically</li>
+                        <li><strong>Initialize data:</strong> Default jobs, items, and system data are set up</li>
+                        <li><strong>Handle connections:</strong> Connection pooling and error handling</li>
+                        <li><strong>Auto-save:</strong> Player data is automatically saved every 5 minutes</li>
+                    </ul>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Connection String Format:</strong> <code>mysql://username:password@host:port/database?</code>
+                    </div>
+                    
+                    <h3>Configuration Structure</h3>
+                    <div class="file-tree">
+                        <div class="tree-item">
+                            <i class="fas fa-folder"></i>
+                            <span>config/</span>
+                        </div>
+                        <div class="tree-item tree-child">
+                            <i class="fas fa-folder"></i>
+                            <span>modules/</span>
+                        </div>
+                        <div class="tree-item tree-child tree-grandchild">
+                            <i class="fas fa-file"></i>
+                            <span>jobs.lua</span>
+                        </div>
+                        <div class="tree-item tree-child tree-grandchild">
+                            <i class="fas fa-file"></i>
+                            <span>adminmenu.lua</span>
+                        </div>
+                        <div class="tree-item tree-child tree-grandchild">
+                            <i class="fas fa-file"></i>
+                            <span>inventory.lua</span>
+                        </div>
+                        <div class="tree-item tree-child">
+                            <i class="fas fa-folder"></i>
+                            <span>permissions/</span>
+                        </div>
+                        <div class="tree-item tree-child tree-grandchild">
+                            <i class="fas fa-file"></i>
+                            <span>discord.lua</span>
+                        </div>
+                    </div>
+
+                    <h3>Module Configuration</h3>
+                    <p>Each module has its own configuration file in <code>config/modules/</code>. Example:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>config/modules/jobs.lua</span>
+                            <button class="copy-btn" onclick="copyCode('jobs-config')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="jobs-config"><code>Config.Jobs = {
+    -- Job categories and permissions
+    categories = {
+        government = {
+            name = "Government Jobs",
+            roles = {"government", "admin"},
+            jobs = {
+                ems = {
+                    name = "Emergency Medical Services",
+                    grades = {
+                        [0] = {name = "Trainee", salary = 1500},
+                        [1] = {name = "Paramedic", salary = 2000},
+                        [2] = {name = "Senior Paramedic", salary = 2500},
+                        [3] = {name = "Chief", salary = 3000}
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Database Section -->
+                <section id="database" class="section">
+                    <h2>Database System</h2>
+                    <p>CoreX includes a comprehensive built-in MySQL database system powered by <strong>oxmysql</strong> for optimal performance and reliability.</p>
+                    
+                    <h3>oxmysql Integration</h3>
+                    <p>CoreX now uses oxmysql for enhanced database performance:</p>
+                    <ul>
+                        <li><strong>Optimized queries:</strong> Uses appropriate oxmysql exports (scalar, single, query, update, insert)</li>
+                        <li><strong>Transaction support:</strong> Atomic operations for data integrity</li>
+                        <li><strong>Performance monitoring:</strong> Built-in benchmark tools</li>
+                        <li><strong>Error handling:</strong> Robust connection and query error management</li>
+                        <li><strong>Connection pooling:</strong> Efficient database connection management</li>
+                    </ul>
+
+                    <h3>Database Schema</h3>
+                    <p>The framework automatically creates and manages the following tables:</p>
+                    
+                    <div class="schema-grid">
+                        <div class="schema-card">
+                            <h4>Players Table</h4>
+                            <ul>
+                                <li><code>id</code> - Primary key</li>
+                                <li><code>identifier</code> - Player license</li>
+                                <li><code>name</code> - Player name</li>
+                                <li><code>money</code> - Cash amount</li>
+                                <li><code>bank</code> - Bank balance</li>
+                                <li><code>job</code> - Current job</li>
+                                <li><code>job_grade</code> - Job grade</li>
+                                <li><code>position</code> - Last position</li>
+                                <li><code>created_at</code> - Account creation date</li>
+                                <li><code>last_login</code> - Last login timestamp</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="schema-card">
+                            <h4>Characters Table</h4>
+                            <ul>
+                                <li><code>id</code> - Primary key</li>
+                                <li><code>player_id</code> - Player reference</li>
+                                <li><code>slot</code> - Character slot (1-5)</li>
+                                <li><code>name</code> - Character name</li>
+                                <li><code>gender</code> - Character gender</li>
+                                <li><code>dateofbirth</code> - Birth date</li>
+                                <li><code>height</code> - Character height</li>
+                                <li><code>alive</code> - Alive status</li>
+                                <li><code>position</code> - Last position</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="schema-card">
+                            <h4>Vehicles Table</h4>
+                            <ul>
+                                <li><code>id</code> - Primary key</li>
+                                <li><code>owner</code> - Owner identifier</li>
+                                <li><code>plate</code> - License plate</li>
+                                <li><code>vehicle</code> - Vehicle model</li>
+                                <li><code>stored</code> - Garage status</li>
+                                <li><code>garage</code> - Garage location</li>
+                                <li><code>fuel</code> - Fuel level</li>
+                                <li><code>engine_health</code> - Engine condition</li>
+                                <li><code>body_health</code> - Body condition</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="schema-card">
+                            <h4>Inventory Table</h4>
+                            <ul>
+                                <li><code>id</code> - Primary key</li>
+                                <li><code>owner</code> - Owner identifier</li>
+                                <li><code>type</code> - Inventory type</li>
+                                <li><code>item</code> - Item name</li>
+                                <li><code>count</code> - Item quantity</li>
+                                <li><code>metadata</code> - Item metadata</li>
+                                <li><code>slot</code> - Inventory slot</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3>Performance Features</h3>
+                    <ul>
+                        <li><strong>Auto-save:</strong> Player data automatically saved every 5 minutes</li>
+                        <li><strong>Benchmarking:</strong> Built-in performance testing via <code>core/server/benchmark.lua</code></li>
+                        <li><strong>Query optimization:</strong> Uses appropriate oxmysql exports for each operation type</li>
+                        <li><strong>Transaction support:</strong> ACID-compliant database operations</li>
+                        <li><strong>Error handling:</strong> Comprehensive error logging and recovery</li>
+                        <li><strong>Data validation:</strong> Input validation and sanitization</li>
+                        <li><strong>SQL injection prevention:</strong> Parameterized queries and input sanitization</li>
+                    </ul>
+
+                    <h3>Benchmarking</h3>
+                    <p>CoreX includes comprehensive database benchmarking tools:</p>
+                    <ul>
+                        <li><strong>Automatic testing:</strong> Runs on resource start after 5 seconds</li>
+                        <li><strong>Manual testing:</strong> Use console command <code>benchmark</code></li>
+                        <li><strong>Performance metrics:</strong> Query timing and execution statistics</li>
+                        <li><strong>Test coverage:</strong> Tests all major database operations</li>
+                    </ul>
+                </section>
+
+                <!-- Modules Section -->
+                <section id="modules" class="section">
+                    <h2>Modules</h2>
+                    <p>CoreX comes with several built-in modules that provide essential functionality.</p>
+                    
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-users"></i>
+                                <h3>Multi-Character</h3>
+                            </div>
+                            <p>Support for multiple characters per player with perma-death mechanics.</p>
+                            <ul>
+                                <li>Up to 5 characters per player</li>
+                                <li>Perma-death system</li>
+                                <li>Character persistence</li>
+                                <li>Slot management</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-briefcase"></i>
+                                <h3>Jobs</h3>
+                            </div>
+                            <p>Comprehensive job system with Discord role integration.</p>
+                            <ul>
+                                <li>Government jobs</li>
+                                <li>Transport jobs</li>
+                                <li>Civilian jobs</li>
+                                <li>Illegal jobs</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-box"></i>
+                                <h3>Inventory</h3>
+                            </div>
+                            <p>Weight-based inventory system with drag & drop UI.</p>
+                            <ul>
+                                <li>Item stacking</li>
+                                <li>Weight limits</li>
+                                <li>Drag & drop interface</li>
+                                <li>Item persistence</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-university"></i>
+                                <h3>Banking</h3>
+                            </div>
+                            <p>Bank account management and transaction system.</p>
+                            <ul>
+                                <li>Account management</li>
+                                <li>Transaction logging</li>
+                                <li>Transfer system</li>
+                                <li>ATM integration</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-car"></i>
+                                <h3>Vehicles</h3>
+                            </div>
+                            <p>Vehicle garage, spawning, and ownership system.</p>
+                            <ul>
+                                <li>Garage management</li>
+                                <li>Vehicle persistence</li>
+                                <li>Key sharing</li>
+                                <li>Impound system</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <i class="fas fa-tools"></i>
+                                <h3>Admin Menu</h3>
+                            </div>
+                            <p>Comprehensive admin tools with Discord logging.</p>
+                            <ul>
+                                <li>Player management</li>
+                                <li>Teleportation</li>
+                                <li>Revive system</li>
+                                <li>Discord logging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Commands & Keybindings Section -->
+                <section id="commands" class="section">
+                    <h2>Commands & Keybindings</h2>
+                    <p>CoreX provides a comprehensive set of commands and keybindings for both players and administrators.</p>
+                    
+                    <h3>Console Commands</h3>
+                    <p>These commands are available in the server console:</p>
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <h4><code>benchmark</code></h4>
+                            <p>Run database performance benchmark (console only)</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>benchmark</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>saveinv</code></h4>
+                            <p>Manually save all player inventories</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>saveinv</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>reload</code></h4>
+                            <p>Reload a specific module</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>reload [module_name]</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Player Commands</h3>
+                    <p>These commands are available to all players:</p>
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <h4><code>/help</code></h4>
+                            <p>Show available commands</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/char</code></h4>
+                            <p>Open character selection menu</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/job</code></h4>
+                            <p>Show current job information</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/bank</code></h4>
+                            <p>Open banking interface</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/inventory</code></h4>
+                            <p>Open inventory system</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/vehicles</code></h4>
+                            <p>Show owned vehicles</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/admin</code></h4>
+                            <p>Open admin panel (if authorized)</p>
+                        </div>
+                    </div>
+
+                    <h3>Keybindings</h3>
+                    <p>Default keybindings for quick access to features:</p>
+                    <div class="keybindings-grid">
+                        <div class="keybinding-card">
+                            <div class="key">F1</div>
+                            <div class="description">Open main menu</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F2</div>
+                            <div class="description">Open character menu</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F3</div>
+                            <div class="description">Open job menu</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F4</div>
+                            <div class="description">Open admin panel (if authorized)</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F5</div>
+                            <div class="description">Open inventory</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F6</div>
+                            <div class="description">Open banking</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">F7</div>
+                            <div class="description">Open vehicle management</div>
+                        </div>
+                        
+                        <div class="keybinding-card">
+                            <div class="key">ESC</div>
+                            <div class="description">Close menus</div>
+                        </div>
+                    </div>
+
+                    <h3>Admin Commands</h3>
+                    <p>These commands are available to administrators:</p>
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <h4><code>/kick [id] [reason]</code></h4>
+                            <p>Kick a player from the server</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/kick 1 "Breaking rules"</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/ban [id] [duration] [reason]</code></h4>
+                            <p>Ban a player from the server</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/ban 1 24h "Cheating"</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/unban [identifier]</code></h4>
+                            <p>Unban a player by their identifier</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/unban license:123456789</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/teleport [id]</code></h4>
+                            <p>Teleport to a player</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/teleport 1</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/bring [id]</code></h4>
+                            <p>Bring a player to you</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/bring 1</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/goto [id]</code></h4>
+                            <p>Go to a player</p>
+                            <div class="command-example">
+                                <strong>Usage:</strong> <code>/goto 1</code>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/noclip</code></h4>
+                            <p>Toggle noclip mode</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/godmode</code></h4>
+                            <p>Toggle god mode</p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <h4><code>/invisible</code></h4>
+                            <p>Toggle invisibility</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- API Reference Section -->
+                <section id="api" class="section">
+                    <h2>API Reference</h2>
+                    <p>CoreX provides a comprehensive API for developers to extend and integrate with the framework.</p>
+                    
+                    <h3>Core API</h3>
+                    <div class="api-section">
+                        <h4>Player Management</h4>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Server-side</span>
+                                <button class="copy-btn" onclick="copyCode('player-api')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="player-api"><code>-- Get player data
+local playerData = CoreX.Players.GetPlayerData(source)
+
+-- Set player data
+CoreX.Players.SetPlayerData(source, data)
+
+-- Get player identifier
+local identifier = CoreX.Players.GetPlayerIdentifier(source)</code></pre>
+                        </div>
+                    </div>
+
+                    <h3>Database API</h3>
+                    <div class="api-section">
+                        <h4>oxmysql Database Operations</h4>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Server-side</span>
+                                <button class="copy-btn" onclick="copyCode('db-api')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="db-api"><code>-- Single row query (optimized)
+CoreX.Database.FetchSingle('SELECT * FROM players WHERE identifier = ?', {identifier}, function(result)
+    if result then
+        print(result.name)
+    end
+end)
+
+-- Multiple rows query
+CoreX.Database.FetchAll('SELECT * FROM players WHERE job = ?', {job}, function(results)
+    for i, player in ipairs(results) do
+        print(player.name)
+    end
+end)
+
+-- Scalar value (COUNT, MAX, etc.)
+CoreX.Database.FetchScalar('SELECT COUNT(*) FROM players', {}, function(count)
+    print('Total players:', count)
+end)
+
+-- Insert with return ID
+CoreX.Database.Insert('INSERT INTO players (identifier, name) VALUES (?, ?)', {identifier, name}, function(insertId)
+    print('New player ID:', insertId)
+end)
+
+-- Update/Delete operations
+CoreX.Database.Execute('UPDATE players SET money = ? WHERE identifier = ?', {money, identifier}, function(success)
+    if success then
+        print('Player money updated')
+    end
+end)
+
+-- Transaction support
+CoreX.Database.Transaction({
+    {'UPDATE players SET money = money - ? WHERE id = ?', {amount, playerId}},
+    {'UPDATE players SET money = money + ? WHERE id = ?', {amount, targetId}}
+}, function(success)
+    if success then
+        print('Money transfer completed')
+    end
+end)</code></pre>
+                        </div>
+                    </div>
+
+                    <h3>Localization API</h3>
+                    <div class="api-section">
+                        <h4>Translation Functions</h4>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Shared</span>
+                                <button class="copy-btn" onclick="copyCode('locale-api')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="locale-api"><code>-- Get translation
+local text = CoreX.Locale.Get("key", "en")
+
+-- Get translation with parameters
+local text = CoreX.Locale.Get("welcome", "en", {name = "John"})
+
+-- Set language
+CoreX.Locale.SetLanguage("en")</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Localization Section -->
+                <section id="localization" class="section">
+                    <h2>Localization</h2>
+                    <p>CoreX supports multiple languages with a fallback system.</p>
+                    
+                    <h3>Supported Languages</h3>
+                    <ul>
+                        <li><strong>English (en)</strong> - Default language</li>
+                        <li><strong>Norwegian (no)</strong> - Norwegian translations</li>
+                        <li><strong>Spanish (es)</strong> - Spanish translations</li>
+                        <li><strong>French (fr)</strong> - French translations</li>
+                        <li><strong>German (de)</strong> - German translations</li>
+                    </ul>
+
+                    <h3>Adding Translations</h3>
+                    <p>To add a new language, create a locale file in the module's <code>locale/</code> folder:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>modules/jobs/locale/fr.lua</span>
+                            <button class="copy-btn" onclick="copyCode('locale-example')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="locale-example"><code>return {
+    ["job_set"] = "Job défini sur %s",
+    ["job_not_found"] = "Job non trouvé",
+    ["no_permission"] = "Vous n'avez pas la permission",
+    ["job_applied"] = "Candidature envoyée pour %s"
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Security Section -->
+                <section id="security" class="section">
+                    <h2>Security & Permissions</h2>
+                    <p>CoreX implements comprehensive security measures to protect your server.</p>
+                    
+                    <h3>Discord Integration</h3>
+                    <ul>
+                        <li><strong>Role-based Access:</strong> All job access controlled by Discord roles</li>
+                        <li><strong>Server Entry:</strong> Players must have specific Discord roles to join</li>
+                        <li><strong>Admin Logging:</strong> All admin actions logged to Discord</li>
+                        <li><strong>Support Tickets:</strong> Ticket system with Discord thread creation</li>
+                    </ul>
+
+                    <h3>Permission System</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Permission Check</span>
+                            <button class="copy-btn" onclick="copyCode('permission-check')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="permission-check"><code>-- Check if player has permission
+if CoreX.Permissions.HasPermission(source, "admin.revive") then
+    -- Allow action
+end
+
+-- Check Discord role
+if CoreX.Discord.HasRole(source, "government") then
+    -- Allow government job access
+end</code></pre>
+                    </div>
+                </section>
+
+                <!-- Contributing Section -->
+                <section id="contributing" class="section">
+                    <h2>Contributing</h2>
+                    <p>We welcome contributions from the community! Please read our contributing guidelines.</p>
+                    
+                    <h3>How to Contribute</h3>
+                    <ol>
+                        <li>Fork the repository</li>
+                        <li>Create a feature branch</li>
+                        <li>Make your changes following our coding standards</li>
+                        <li>Test your changes thoroughly</li>
+                        <li>Submit a pull request</li>
+                    </ol>
+
+                    <h3>Coding Standards</h3>
+                    <ul>
+                        <li>Use camelCase for variables and functions</li>
+                        <li>Use PascalCase for classes and modules</li>
+                        <li>Use UPPER_CASE for constants</li>
+                        <li>Add comments for complex logic</li>
+                        <li>Follow the existing code style</li>
+                    </ul>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> All technical documentation should be placed in the <code>docs/</code> folder.
+                    </div>
+                </section>
+
+                <!-- Changelog Section -->
+                <section id="changelog" class="section">
+                    <h2>Changelog</h2>
+                    <p>View the complete changelog in the <a href="https://github.com/Legacy-DEV-Team/CoreX/blob/Alpha/CHANGELOG.md" target="_blank">CHANGELOG.md</a> file.</p>
+                    
+                                            <h3>Latest Version: v1.0.2.0</h3>
+                    <ul>
+                        <li><strong>oxmysql Integration:</strong> Replaced mysql-async with oxmysql for improved performance</li>
+                        <li><strong>Database Benchmarking:</strong> Built-in performance testing via core/server/benchmark.lua</li>
+                        <li><strong>Query Optimization:</strong> Uses appropriate oxmysql exports (scalar, single, query, update, insert)</li>
+                        <li><strong>Enhanced Error Handling:</strong> More robust error detection and reporting</li>
+                        <li><strong>Performance Monitoring:</strong> Built-in benchmarking capabilities</li>
+                        <li><strong>Updated Documentation:</strong> Comprehensive oxmysql integration documentation</li>
+                    </ul>
+                    
+                    <h3>Previous Version: v1.0.0.2</h3>
+                    <ul>
+                        <li><strong>Built-in MySQL Support:</strong> Replaced external mysql-async dependency with native MySQL integration</li>
+                        <li><strong>Connection String Configuration:</strong> Simple mysql:// connection string format in server.cfg</li>
+                        <li><strong>Auto Table Creation:</strong> Framework automatically creates all required database tables</li>
+                        <li><strong>Enhanced Database API:</strong> New CoreX.Database namespace with transaction support</li>
+                        <li><strong>Improved Error Handling:</strong> Better database connection and query error management</li>
+                        <li><strong>Updated Documentation:</strong> Comprehensive database system documentation</li>
+                    </ul>
+                    
+                    <h3>Previous Version: v1.0.0.1</h3>
+                    <ul>
+                        <li>Cleaned up unused and deprecated files</li>
+                        <li>Consolidated configuration structure</li>
+                        <li>Created documentation site</li>
+                        <li>Simplified root README</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
