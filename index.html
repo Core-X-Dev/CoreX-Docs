@@ -16,7 +16,7 @@
     <!-- SEO and Social Meta Tags -->
     <meta name="description" content="CoreX Framework - A modular, modern FiveM framework built in Lua with built-in MySQL support, Discord integration, and comprehensive security features.">
     <meta name="keywords" content="FiveM, CoreX, Framework, Lua, MySQL, Discord, Gaming, Server">
-    <meta name="author" content="Legacy DEV Team">
+    <meta name="author" content="CoreX">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="CoreX Framework Documentation">
@@ -64,6 +64,7 @@
                     <li><a href="#configuration" class="nav-link"><i class="fas fa-cog"></i> Configuration</a></li>
                     <li><a href="#database" class="nav-link"><i class="fas fa-database"></i> Database</a></li>
                     <li><a href="#modules" class="nav-link"><i class="fas fa-puzzle-piece"></i> Modules</a></li>
+                    <li><a href="#framework-structure" class="nav-link"><i class="fas fa-sitemap"></i> Framework Structure</a></li>
                     <li><a href="#commands" class="nav-link"><i class="fas fa-keyboard"></i> Commands</a></li>
                     <li><a href="#api" class="nav-link"><i class="fas fa-code"></i> API Reference</a></li>
                     <li><a href="#localization" class="nav-link"><i class="fas fa-globe"></i> Localization</a></li>
@@ -143,7 +144,7 @@
                             </button>
                         </div>
                         <pre id="install-code"><code># Clone the repository
-git clone https://github.com/Legacy-DEV-Team/CoreX.git
+git clone https://github.com/Core-X-Dev/CoreX.git
 
 # Or download the latest release
 # Extract to your FiveM resources folder</code></pre>
@@ -664,11 +665,351 @@ set mysql_connection "mysql://username:password@localhost:3306/database_name?"</
                     </div>
                 </section>
 
+                <!-- Framework Structure Section -->
+                <section id="framework-structure" class="section">
+                    <h2>Framework Structure</h2>
+                    <p>CoreX Framework is built with a modular architecture that separates concerns and provides a clean, maintainable codebase. The framework is inspired by the best practices from ESX, OX, and QBCore while introducing modern features and improvements.</p>
+                    
+                    <h3>Directory Structure</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Directory Structure</span>
+                            <button class="copy-btn" onclick="copyCode('directory-structure')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="directory-structure"><code>CoreX/
+├── fxmanifest.lua          # Resource manifest
+├── imports.lua             # Global function imports
+├── locale.lua              # Locale system
+├── README.md               # Framework documentation
+├── CHANGELOG.md            # Version history
+├── CONTRIBUTING.md         # Contribution guidelines
+├── LICENSE                 # MIT License
+├── VERSION.md              # Version information
+│
+├── shared/                 # Shared code (client & server)
+│   ├── config/            # Configuration files
+│   │   ├── main.lua       # Main configuration
+│   │   ├── weapons.lua    # Weapons configuration
+│   │   ├── adjustments.lua # Game adjustments
+│   │   └── logs.lua       # Logging configuration
+│   ├── modules/           # Shared modules
+│   │   ├── math.lua       # Math utilities
+│   │   ├── table.lua      # Table utilities
+│   │   └── timeout.lua    # Timeout utilities
+│   ├── main.lua           # Shared main file
+│   └── functions.lua      # Shared functions
+│
+├── server/                 # Server-side code
+│   ├── modules/           # Server modules
+│   │   ├── callback.lua   # Callback system
+│   │   ├── database.lua   # Database operations
+│   │   ├── discord.lua    # Discord integration
+│   │   ├── permissions.lua # Permission system
+│   │   ├── benchmark.lua  # Database benchmarking
+│   │   ├── commands.lua   # Command system
+│   │   ├── events.lua     # Event system
+│   │   ├── exports.lua    # Export functions
+│   │   ├── onesync.lua    # OneSync integration
+│   │   └── paycheck.lua   # Paycheck system
+│   ├── classes/           # Class definitions
+│   │   ├── player.lua     # Player class
+│   │   ├── vehicle.lua    # Vehicle class
+│   │   ├── character.lua  # Character class
+│   │   └── overrides/     # Class overrides
+│   ├── bridge/            # Bridge integrations
+│   ├── common.lua         # Common server functions
+│   ├── functions.lua      # Server functions
+│   └── main.lua           # Server main file
+│
+├── client/                 # Client-side code
+│   ├── modules/           # Client modules
+│   │   ├── wrapper.lua    # NUI wrapper
+│   │   ├── callback.lua   # Callback system
+│   │   ├── adjustments.lua # Game adjustments
+│   │   ├── points.lua     # Interaction points
+│   │   ├── events.lua     # Event system
+│   │   ├── actions.lua    # Action system
+│   │   ├── death.lua      # Death handling
+│   │   ├── interactions.lua # Player interactions
+│   │   ├── scaleform.lua  # Scaleform handling
+│   │   ├── streaming.lua  # Streaming system
+│   │   └── ui.lua         # UI system
+│   ├── imports/           # Client imports
+│   ├── functions.lua      # Client functions
+│   └── main.lua           # Client main file
+│
+├── locales/               # Localization files
+│   ├── en.lua             # English
+│   ├── no.lua             # Norwegian
+│   ├── sv.lua             # Swedish
+│   ├── da.lua             # Danish
+│   └── de.lua             # German
+│
+└── html/                  # Web interface
+    ├── ui.html            # Main UI
+    ├── css/
+    │   └── app.css        # Styles
+    ├── js/
+    │   ├── app.js         # Main JavaScript
+    │   ├── wrapper.js     # NUI wrapper
+    │   └── mustache.min.js # Template engine
+    └── fonts/             # Custom fonts</code></pre>
+                    </div>
+
+                    <h3>Core Components</h3>
+                    
+                    <h4>1. Configuration System</h4>
+                    <p>The configuration system is centralized in <code>shared/config/</code> and provides:</p>
+                    <ul>
+                        <li><strong>Main Configuration</strong> (<code>main.lua</code>): Core framework settings</li>
+                        <li><strong>Weapons Configuration</strong> (<code>weapons.lua</code>): Weapon definitions and properties</li>
+                        <li><strong>Adjustments Configuration</strong> (<code>adjustments.lua</code>): Game balance settings</li>
+                        <li><strong>Logs Configuration</strong> (<code>logs.lua</code>): Logging system settings</li>
+                    </ul>
+
+                    <h4>2. Module System</h4>
+                    <p>CoreX uses a modular architecture with shared modules in <code>shared/modules/</code>:</p>
+                    <ul>
+                        <li><strong>Math Module</strong> (<code>math.lua</code>): Mathematical utilities and calculations</li>
+                        <li><strong>Table Module</strong> (<code>table.lua</code>): Table manipulation utilities</li>
+                        <li><strong>Timeout Module</strong> (<code>timeout.lua</code>): Asynchronous timing utilities</li>
+                    </ul>
+
+                    <h4>3. Database System</h4>
+                    <p>The database system is built on oxmysql and provides:</p>
+                    <ul>
+                        <li><strong>Automatic table creation</strong>: All required tables are created on startup</li>
+                        <li><strong>Connection pooling</strong>: Efficient database connection management</li>
+                        <li><strong>Query optimization</strong>: Uses appropriate oxmysql exports</li>
+                        <li><strong>Transaction support</strong>: ACID-compliant operations</li>
+                        <li><strong>Benchmarking</strong>: Built-in performance testing</li>
+                    </ul>
+
+                    <h4>4. Localization System</h4>
+                    <p>Multi-language support with:</p>
+                    <ul>
+                        <li><strong>5 supported languages</strong>: English, Norwegian, Swedish, Danish, German</li>
+                        <li><strong>Easy translation system</strong>: Simple key-value translation files</li>
+                        <li><strong>Dynamic locale switching</strong>: Change language at runtime</li>
+                        <li><strong>Parameter support</strong>: String formatting with variables</li>
+                    </ul>
+
+                    <h4>5. UI System</h4>
+                    <p>Modern web-based interface with:</p>
+                    <ul>
+                        <li><strong>Responsive design</strong>: Works on all screen sizes</li>
+                        <li><strong>Dark theme</strong>: Modern, clean appearance</li>
+                        <li><strong>Notification system</strong>: Toast-style notifications</li>
+                        <li><strong>Menu system</strong>: Modal-based menu interface</li>
+                        <li><strong>Help text</strong>: Context-sensitive help system</li>
+                    </ul>
+
+                    <h3>Key Features</h3>
+                    
+                    <h4>1. Player Management</h4>
+                    <ul>
+                        <li><strong>Multi-character support</strong>: Up to 5 characters per player</li>
+                        <li><strong>Perma-death system</strong>: Realistic death mechanics</li>
+                        <li><strong>Auto-save</strong>: Automatic data persistence</li>
+                        <li><strong>Position tracking</strong>: Player location persistence</li>
+                    </ul>
+
+                    <h4>2. Job System</h4>
+                    <ul>
+                        <li><strong>Role-based permissions</strong>: Jobs with different access levels</li>
+                        <li><strong>Grade system</strong>: Multiple job grades with different permissions</li>
+                        <li><strong>Salary system</strong>: Automatic paycheck distribution</li>
+                        <li><strong>Discord integration</strong>: Role synchronization</li>
+                    </ul>
+
+                    <h4>3. Economy System</h4>
+                    <ul>
+                        <li><strong>Money management</strong>: Cash and bank account handling</li>
+                        <li><strong>Transaction logging</strong>: Complete audit trail</li>
+                        <li><strong>Transfer system</strong>: Player-to-player money transfers</li>
+                        <li><strong>ATM integration</strong>: Banking system integration</li>
+                    </ul>
+
+                    <h4>4. Vehicle System</h4>
+                    <ul>
+                        <li><strong>Garage management</strong>: Vehicle storage and retrieval</li>
+                        <li><strong>Ownership system</strong>: Vehicle ownership tracking</li>
+                        <li><strong>Key sharing</strong>: Vehicle key distribution</li>
+                        <li><strong>Impound system</strong>: Vehicle impound mechanics</li>
+                    </ul>
+
+                    <h4>5. Inventory System</h4>
+                    <ul>
+                        <li><strong>Weight-based</strong>: Realistic weight limitations</li>
+                        <li><strong>Drag & drop</strong>: Modern inventory interface</li>
+                        <li><strong>Item stacking</strong>: Automatic item stacking</li>
+                        <li><strong>Metadata support</strong>: Item-specific data storage</li>
+                    </ul>
+
+                    <h4>6. Security System</h4>
+                    <ul>
+                        <li><strong>Permission system</strong>: Role-based access control</li>
+                        <li><strong>Anti-cheat</strong>: Suspicious activity detection</li>
+                        <li><strong>Audit logging</strong>: Complete action logging</li>
+                        <li><strong>Input validation</strong>: SQL injection prevention</li>
+                    </ul>
+
+                    <h3>Performance Features</h3>
+                    
+                    <h4>1. Database Optimization</h4>
+                    <ul>
+                        <li><strong>Connection pooling</strong>: Efficient connection management</li>
+                        <li><strong>Query optimization</strong>: Appropriate oxmysql exports</li>
+                        <li><strong>Transaction support</strong>: ACID-compliant operations</li>
+                        <li><strong>Benchmarking</strong>: Performance monitoring</li>
+                    </ul>
+
+                    <h4>2. Streaming Optimization</h4>
+                    <ul>
+                        <li><strong>Dynamic streaming</strong>: Efficient entity loading</li>
+                        <li><strong>Distance-based loading</strong>: Load entities based on distance</li>
+                        <li><strong>Population density control</strong>: Configurable population settings</li>
+                    </ul>
+
+                    <h4>3. Memory Management</h4>
+                    <ul>
+                        <li><strong>Garbage collection</strong>: Automatic memory cleanup</li>
+                        <li><strong>Resource pooling</strong>: Efficient resource reuse</li>
+                        <li><strong>Memory monitoring</strong>: Built-in memory tracking</li>
+                    </ul>
+
+                    <h3>Development Guidelines</h3>
+                    
+                    <h4>1. Code Style</h4>
+                    <ul>
+                        <li><strong>Consistent naming</strong>: Use descriptive variable and function names</li>
+                        <li><strong>Proper indentation</strong>: Use 4 spaces for indentation</li>
+                        <li><strong>Commenting</strong>: Document complex functions and logic</li>
+                        <li><strong>Error handling</strong>: Always handle potential errors</li>
+                    </ul>
+
+                    <h4>2. Module Development</h4>
+                    <ul>
+                        <li><strong>Follow conventions</strong>: Use established patterns</li>
+                        <li><strong>Use CoreX functions</strong>: Leverage built-in functionality</li>
+                        <li><strong>Test thoroughly</strong>: Ensure compatibility</li>
+                        <li><strong>Document properly</strong>: Provide clear documentation</li>
+                    </ul>
+
+                    <h4>3. Performance Considerations</h4>
+                    <ul>
+                        <li><strong>Optimize queries</strong>: Use appropriate database functions</li>
+                        <li><strong>Minimize network traffic</strong>: Efficient event usage</li>
+                        <li><strong>Cache data</strong>: Store frequently accessed data</li>
+                        <li><strong>Monitor performance</strong>: Use built-in benchmarking</li>
+                    </ul>
+
+                    <h3>Migration Guide</h3>
+                    
+                    <h4>From ESX</h4>
+                    <ol>
+                        <li>Replace ESX functions with CoreX equivalents</li>
+                        <li>Update database queries to use CoreX database functions</li>
+                        <li>Replace ESX events with CoreX events</li>
+                        <li>Update UI to use CoreX notification system</li>
+                    </ol>
+
+                    <h4>From QBCore</h4>
+                    <ol>
+                        <li>Replace QBCore functions with CoreX equivalents</li>
+                        <li>Update player data structure</li>
+                        <li>Replace QBCore events with CoreX events</li>
+                        <li>Update inventory system to use CoreX inventory</li>
+                    </ol>
+
+                    <h4>From OX</h4>
+                    <ol>
+                        <li>Replace OX functions with CoreX equivalents</li>
+                        <li>Update database queries</li>
+                        <li>Replace OX events with CoreX events</li>
+                        <li>Update UI components</li>
+                    </ol>
+                </section>
+
                 <!-- API Reference Section -->
                 <section id="api" class="section">
                     <h2>API Reference</h2>
                     <p>CoreX provides a comprehensive API for developers to extend and integrate with the framework.</p>
                     
+                    <h3>Core Functions</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Core Functions</span>
+                            <button class="copy-btn" onclick="copyCode('core-functions')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="core-functions"><code>-- Player functions
+GetPlayer(source)
+GetPlayerByIdentifier(identifier)
+GetPlayers()
+GetPlayerCount()
+
+-- Job functions
+GetJob(jobName)
+GetJobGrade(jobName, grade)
+JobExists(jobName)
+
+-- Database functions
+DatabaseQuery(query, params, callback)
+DatabaseInsert(query, params, callback)
+DatabaseUpdate(query, params, callback)
+
+-- Locale functions
+GetLocale(key, ...)
+SetLocale(locale)
+GetCurrentLocale()
+
+-- Utility functions
+FormatMoney(amount)
+GetDistance(point1, point2)
+IsInRange(point1, point2, range)</code></pre>
+                    </div>
+
+                    <h3>Events</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Events</span>
+                            <button class="copy-btn" onclick="copyCode('events')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="events"><code>-- Player events
+RegisterNetEvent('corex:playerJoined')
+RegisterNetEvent('corex:playerLeft')
+RegisterNetEvent('corex:playerDataUpdated')
+
+-- Job events
+RegisterNetEvent('corex:jobChanged')
+RegisterNetEvent('corex:gradeChanged')
+
+-- Money events
+RegisterNetEvent('corex:moneyAdded')
+RegisterNetEvent('corex:moneyRemoved')</code></pre>
+                    </div>
+
+                    <h3>Exports</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Exports</span>
+                            <button class="copy-btn" onclick="copyCode('exports')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre id="exports"><code>-- Available exports
+exports['CoreX']:GetPlayer(source)
+exports['CoreX']:GetPlayerByIdentifier(identifier)
+exports['CoreX']:GetLocale(key, ...)
+exports['CoreX']:DatabaseQuery(query, params, callback)</code></pre>
+                    </div>
+
                     <h3>Core API</h3>
                     <div class="api-section">
                         <h4>Player Management</h4>
@@ -862,7 +1203,7 @@ end</code></pre>
                 <!-- Changelog Section -->
                 <section id="changelog" class="section">
                     <h2>Changelog</h2>
-                    <p>View the complete changelog in the <a href="https://github.com/Legacy-DEV-Team/CoreX/blob/Alpha/CHANGELOG.md" target="_blank">CHANGELOG.md</a> file.</p>
+                    <p>View the complete changelog in the <a href="https://github.com/Core-X-Dev/CoreX/blob/Alpha/CHANGELOG.md" target="_blank">CHANGELOG.md</a> file.</p>
                     
                                             <h3>Latest Version: v1.0.2.0</h3>
                     <ul>
